@@ -1,16 +1,16 @@
 # generated_by: pipeline_factory
 # spec_id: spec-86caa689
-# spec_version: 3
+# spec_version: 4
 # DO NOT EDIT — rendered from the approved spec; changes belong in the spec.
 # Include from the consuming bundle's databricks.yml.
 resources:
   jobs:
     account_recon:
-      name: "[account] reconciliation (spec spec-86caa689 v3)"
+      name: "[account] reconciliation (spec spec-86caa689 v4)"
       tags:
         generated_by: pipeline_factory
         spec_id: spec-86caa689
-        spec_version: "3"
+        spec_version: "4"
       tasks:
         - task_key: recon
           spark_python_task:
