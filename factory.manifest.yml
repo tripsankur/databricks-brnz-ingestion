@@ -2,23 +2,23 @@
 manifest_version: 1
 generated_by: pipeline_factory
 spec_id: spec-86caa689
-spec_version: 2
+spec_version: 3
 entity: account
 artifacts:
   - path: pipelines/account/lakeflow_connect.yml
-    sha256: 92e7957bed6a8d274abd8dc7aab0a5db18511ad2749d0f0437429c1f9a29e70b
+    sha256: d06b9f3859a574613497564bf2de5e561dc9376a92ec9b61792b48b7ad844dea
   - path: pipelines/account/silver_stitch.sql
-    sha256: 7735302f05d19ea2310f335596ffed034a5deab5f5119dfab2bc70377abbd0b5
+    sha256: 3ecaa9978221c182fe0634b5205dfc007e01eea1d347cc7c14ef565c5db7e4e1
   - path: pipelines/account/adapter_view.sql
-    sha256: efe97a168935daa1c29414dad7368277618994c2dcdc99eb0f6fd653291737bf
+    sha256: 7f0ab91703dd08e56ddfa4aac0376993ec9b171314b702b4530efb0cf47623d2
   - path: pipelines/account/expectations.yml
-    sha256: 61838128eecfde5e2c7cd93007f609781c3ba88b9e05a9abe4071167c623aa64
+    sha256: 707b7fe18ef25f027e65ff9b803e667eef004ada80b1120c34134d6fac065002
   - path: pipelines/account/recon_job.py
-    sha256: cb9658c065941d51952c2352bdfedec3f0a910393799938012e7ebcc2ccd2a14
+    sha256: a0acd5d47a122beca57ac89a0839d746b276b2aa74c60c54a2815576c2b998f4
   - path: pipelines/account/tests/test_pipeline.py
-    sha256: 0cb3a4b3820fea15025cdefe043a79e61a8aab851d1fbac33b7a4621a100f615
+    sha256: 0b3635d29ba16db343ef4952de2582c68f2c12efe7e75cade681e587ccb1efdb
   - path: pipelines/account/bundle_resource.yml
-    sha256: e8e839c2a241776d44b49aff187ca48b5bc8fa1ef023e1a8d4d5277805edd693
+    sha256: 6ca0762daa168c5e62e14be0b38d74ec1ded884613690937f0e1ee1cdae7234f
 commands:
   verify: make verify
   deploy: databricks bundle deploy -t <target>
