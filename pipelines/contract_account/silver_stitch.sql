@@ -1,6 +1,6 @@
 -- generated_by: pipeline_factory
 -- spec_id: spec-94139bfa
--- spec_version: 3
+-- spec_version: 4
 -- DO NOT EDIT — rendered from the approved spec; changes belong in the spec.
 -- Silver stitch: workspace.bronze.aldm_contract_account -> workspace.silver.contract_account via crosswalk join.
 
@@ -8,7 +8,7 @@ CREATE OR REPLACE TABLE workspace.silver.contract_account
 TBLPROPERTIES (
   'generated_by' = 'pipeline_factory',
   'spec_id' = 'spec-94139bfa',
-  'spec_version' = '3'
+  'spec_version' = '4'
 )
 AS
 SELECT
