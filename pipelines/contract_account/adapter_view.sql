@@ -1,6 +1,6 @@
 -- generated_by: pipeline_factory
 -- spec_id: spec-94139bfa
--- spec_version: 4
+-- spec_version: 5
 -- DO NOT EDIT — rendered from the approved spec; changes belong in the spec.
 -- Legacy-shaped adapter view: exposes workspace.silver.contract_account in the source shape
 -- so downstream consumers keep working during cutover.
@@ -9,7 +9,7 @@ CREATE OR REPLACE VIEW workspace.silver.contract_account_legacy_adapter
 TBLPROPERTIES (
   'generated_by' = 'pipeline_factory',
   'spec_id' = 'spec-94139bfa',
-  'spec_version' = '4'
+  'spec_version' = '5'
 )
 AS
 SELECT

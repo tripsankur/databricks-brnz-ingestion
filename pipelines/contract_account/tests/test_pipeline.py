@@ -1,6 +1,6 @@
 # generated_by: pipeline_factory
 # spec_id: spec-94139bfa
-# spec_version: 4
+# spec_version: 5
 # DO NOT EDIT — rendered from the approved spec; changes belong in the spec.
 """Rendered smoke tests for the contract_account pipeline artifacts."""
 
