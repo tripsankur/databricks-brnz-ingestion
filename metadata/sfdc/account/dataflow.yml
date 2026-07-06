@@ -1,0 +1,118 @@
+# dataflow.yml — DataflowSpec metadata for account (ADR-008: metadata, never code)
+# Executed by the generic engine in databricks-ingestion-framework; this file
+# mirrors the row MERGEd into ctl.dataflow_spec by Pipeline Factory.
+# generated_by: pipeline_factory · spec_id: spec-86caa689 · spec_version: 7
+dataflow_id: spec-86caa689
+dataflow_group: sfdc
+entity: account
+spec_version: 7
+source_format: delta
+source_details:
+  source_object: "account"
+  mode: "snapshot"
+target_details:
+  bronze_table: "workspace.bronze.sfdc_account"
+  silver_table: "workspace.silver.account"
+  crosswalk_table: "workspace.silver.crosswalk_sfdc_account"
+  batch: "brnz_sfdc_batch"
+select_columns:
+  - Id
+  - Name
+  - Type
+  - Industry
+  - AnnualRevenue
+  - CreatedDate
+crosswalk_keys: |
+  [
+    {
+      "source": "Id",
+      "target": "id"
+    }
+  ]
+column_transforms: |
+  [
+    {
+      "name": "Id",
+      "target": "id",
+      "type": "id",
+      "transform": "src.`Id`",
+      "compare": {
+        "enabled": true,
+        "normalize": null,
+        "tolerance": null
+      }
+    },
+    {
+      "name": "Name",
+      "target": "name",
+      "type": "string",
+      "transform": "src.`Name`",
+      "compare": {
+        "enabled": true,
+        "normalize": "lower",
+        "tolerance": null
+      }
+    },
+    {
+      "name": "Type",
+      "target": "type",
+      "type": "picklist",
+      "transform": "src.`Type`",
+      "compare": {
+        "enabled": true,
+        "normalize": "lower",
+        "tolerance": null
+      }
+    },
+    {
+      "name": "Industry",
+      "target": "industry",
+      "type": "picklist",
+      "transform": "src.`Industry`",
+      "compare": {
+        "enabled": true,
+        "normalize": "lower",
+        "tolerance": null
+      }
+    },
+    {
+      "name": "AnnualRevenue",
+      "target": "annual_revenue",
+      "type": "currency",
+      "transform": "src.`AnnualRevenue`",
+      "compare": {
+        "enabled": true,
+        "normalize": null,
+        "tolerance": 0.01
+      }
+    },
+    {
+      "name": "CreatedDate",
+      "target": "created_date",
+      "type": "datetime",
+      "transform": "src.`CreatedDate`",
+      "compare": {
+        "enabled": true,
+        "normalize": null,
+        "tolerance": null
+      }
+    }
+  ]
+data_quality_expectations: |
+  {
+    "expect": {
+      "annual_revenue_non_negative": "annual_revenue >= 0"
+    },
+    "expect_or_drop": {},
+    "expect_or_fail": {
+      "id_not_null": "id IS NOT NULL",
+      "name_not_null": "name IS NOT NULL",
+      "created_date_not_null": "created_date IS NOT NULL"
+    }
+  }
+is_active: true
+framework_min_version: 1.0.0
+ingest:
+  batch: brnz_sfdc_batch
+  mode: batch
+  schedule: "0 0 3 * * ?"
