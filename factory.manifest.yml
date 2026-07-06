@@ -1,0 +1,26 @@
+# factory.manifest.yml — Pipeline Factory CI/CD contract (see docs/CICD_CONTRACT.md)
+manifest_version: 1
+generated_by: pipeline_factory
+spec_id: spec-86caa689
+spec_version: 1
+entity: account
+artifacts:
+  - path: pipelines/account/lakeflow_connect.yml
+    sha256: 7462bc96bf71b8f51e42842fb0d9997030d87d3dbcf79ed3e212880ee461dab5
+  - path: pipelines/account/silver_stitch.sql
+    sha256: 99046a90810dfd6d7a7b065e75d8c40d25366b7c34b29231bfd76a85629b8166
+  - path: pipelines/account/adapter_view.sql
+    sha256: afe9ced230f61b9493bf1ad37184609a1dde8c6513e1e2e76aa687fc31921cd7
+  - path: pipelines/account/expectations.yml
+    sha256: 66484df3d3dd1c5bcd4a023512bdececa5ec78d0166afd582759d3eb97b0a534
+  - path: pipelines/account/recon_job.py
+    sha256: 730b25f4673dce80b8768d106075f32dc391689cf57fb874a45da4dab5c23162
+  - path: pipelines/account/tests/test_pipeline.py
+    sha256: b838e6bac1524136c419d9137f8dfc4f4777fb2947939492ec75604ec070fa8c
+  - path: pipelines/account/bundle_resource.yml
+    sha256: eafc2714eb106a84cc96141a191f0ac5b900ed86621d1a7718490a135802bbde
+commands:
+  verify: make verify
+  deploy: databricks bundle deploy -t <target>
+evidence:
+  location: pipelines/account/EVIDENCE.md
