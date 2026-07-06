@@ -1,0 +1,18 @@
+# generated_by: pipeline_factory
+# spec_id: spec-94139bfa
+# spec_version: 3
+# DO NOT EDIT — rendered from the approved spec; changes belong in the spec.
+entity: contract_account
+expectations:
+  - name: account_id_not_null
+    constraint: "account_id IS NOT NULL"
+    action: fail
+  - name: created_date_not_null
+    constraint: "created_date IS NOT NULL"
+    action: fail
+  - name: status_code_enum
+    constraint: "status_code IN ('A', 'I')"
+    action: warn
+  - name: balance_non_negative
+    constraint: "balance_amount >= 0"
+    action: warn
