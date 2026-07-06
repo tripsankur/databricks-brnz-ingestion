@@ -1,6 +1,6 @@
 # generated_by: pipeline_factory
 # spec_id: spec-94139bfa
-# spec_version: 5
+# spec_version: 6
 # DO NOT EDIT — rendered from the approved spec; changes belong in the spec.
 entity: contract_account
 expectations:
@@ -11,7 +11,7 @@ expectations:
     constraint: "created_date IS NOT NULL"
     action: fail
   - name: status_code_enum
-    constraint: "status_code IN ('active', 'inactive', 'pending')"
+    constraint: "status_code IN ('active', 'inactive')"
     action: warn
   - name: balance_non_negative
     constraint: "balance_amount >= 0"
