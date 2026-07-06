@@ -1,13 +1,13 @@
 # generated_by: pipeline_factory
 # spec_id: spec-7ec8660b
-# spec_version: 2
+# spec_version: 3
 # DO NOT EDIT — rendered from the approved spec; changes belong in the spec.
 """Reconciliation job for contact: count + key + attribute-hash compare."""
 
 from pyspark.sql import SparkSession, functions as F
 
 SPEC_ID = "spec-7ec8660b"
-SPEC_VERSION = 2
+SPEC_VERSION = 3
 SOURCE_TABLE = "workspace.bronze.sfdc_contact"
 TARGET_TABLE = "workspace.silver.contact"
 CROSSWALK_TABLE = "workspace.silver.crosswalk_sfdc_contact"
