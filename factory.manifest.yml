@@ -1,0 +1,18 @@
+# factory.manifest.yml — Pipeline Factory CI/CD contract (see docs/CICD_CONTRACT.md)
+manifest_version: 2
+generated_by: pipeline_factory
+spec_id: spec-86caa689
+spec_version: 8
+entity: account
+artifact_kind: metadata # ADR-008 — no generated code; engine lives in databricks-ingestion-framework
+artifacts:
+  - path: metadata/sfdc/account/dataflow.yml
+    sha256: cada2568e8a4183ae07f4dea7fb83014e819b5e796633b79a81cdfaf5b53c9ac
+  - path: resources/sfdc.pipeline.yml
+    sha256: c082b0555633969275b1e1afdb2d0b2cf86b78e63ab29b6903b42f566b5ac5a3
+spec_table: ctl.dataflow_spec # rows MERGEd by the factory; tombstoned, never deleted (ADR-010)
+commands:
+  verify: make verify
+  deploy: databricks bundle deploy -t <target>
+evidence:
+  location: metadata/sfdc/account/EVIDENCE.md

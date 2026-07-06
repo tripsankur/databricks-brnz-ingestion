@@ -1,0 +1,37 @@
+# resources/sfdc.pipeline.yml — standard Lakeflow assets for source "sfdc"
+# (ADR-009: ingestion pipeline = what lands bronze; ETL pipeline = bronze->silver;
+#  workflow = when). Prod promotion: databricks bundle deploy applies this file.
+# generated_by: pipeline_factory · spec_id: spec-86caa689 · spec_version: 8
+resources:
+  pipelines:
+    slvr_sfdc_etl:
+      name: slvr_sfdc_etl
+      catalog: workspace
+      schema: silver
+      serverless: true
+      continuous: false
+      libraries:
+        - glob:
+            include: /Workspace/Users/ankurtripathi.cs@gmail.com/.bundle/ingestion-framework/dev/files/engine/**
+      configuration:
+        pf.source: sfdc
+        pf.spec_table: ${var.spec_table}
+        pf.env: ${bundle.target}
+        pf.engine_dir: ${var.framework_engine_dir}
+
+  jobs:
+    sfdc_workflow:
+      name: sfdc_workflow
+      tags:
+        generated_by: pipeline_factory
+      trigger:
+        pause_status: UNPAUSED
+        periodic:
+          interval: 1
+          unit: DAYS
+      # contract batch_schedule (quartz): 0 0 3 * * ?
+      tasks:
+        - task_key: etl
+          pipeline_task:
+            pipeline_id: ${resources.pipelines.slvr_sfdc_etl.id}
+            full_refresh: false
