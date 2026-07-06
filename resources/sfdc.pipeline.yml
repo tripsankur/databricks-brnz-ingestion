@@ -1,7 +1,7 @@
 # resources/sfdc.pipeline.yml — standard Lakeflow assets for source "sfdc"
 # (ADR-009: ingestion pipeline = what lands bronze; ETL pipeline = bronze->silver;
 #  workflow = when). Prod promotion: databricks bundle deploy applies this file.
-# generated_by: pipeline_factory · spec_id: spec-86caa689 · spec_version: 7
+# generated_by: pipeline_factory · spec_id: spec-86caa689 · spec_version: 8
 resources:
   pipelines:
     slvr_sfdc_etl:
