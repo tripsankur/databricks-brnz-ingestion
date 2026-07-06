@@ -1,0 +1,25 @@
+# generated_by: pipeline_factory
+# spec_id: spec-86caa689
+# spec_version: 4
+# DO NOT EDIT — rendered from the approved spec; changes belong in the spec.
+#
+# Ingestion naming standard:
+#   batch  = one scheduled bulk batch per source system (all its tables ride together)
+#   nrt    = near-real-time flow group per source (cdc/streaming entities)
+#   flow   = brnz_{source}_{entity}_{mode}
+ingestion:
+  batch: brnz_sfdc_batch
+  mode: batch
+  transport: lakeflow_connect
+  source_system: sfdc
+  flows:
+    - name: brnz_sfdc_account_batch
+      entity: account
+      source_object: account
+      ingestion_mode: snapshot
+      destination:
+        table: workspace.bronze.sfdc_account
+      table_properties:
+        generated_by: pipeline_factory
+        spec_id: spec-86caa689
+        spec_version: "4"

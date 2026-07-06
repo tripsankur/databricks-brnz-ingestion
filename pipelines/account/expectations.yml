@@ -1,0 +1,18 @@
+# generated_by: pipeline_factory
+# spec_id: spec-86caa689
+# spec_version: 4
+# DO NOT EDIT — rendered from the approved spec; changes belong in the spec.
+entity: account
+expectations:
+  - name: id_not_null
+    constraint: "id IS NOT NULL"
+    action: fail
+  - name: name_not_null
+    constraint: "name IS NOT NULL"
+    action: fail
+  - name: created_date_not_null
+    constraint: "created_date IS NOT NULL"
+    action: fail
+  - name: annual_revenue_non_negative
+    constraint: "annual_revenue >= 0"
+    action: warn
