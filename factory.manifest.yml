@@ -2,14 +2,14 @@
 manifest_version: 2
 generated_by: pipeline_factory
 spec_id: spec-86caa689
-spec_version: 12
+spec_version: 13
 entity: account
 artifact_kind: metadata # ADR-008 — no generated code; engine lives in databricks-ingestion-framework
 artifacts:
   - path: metadata/sfdc/account/dataflow.yml
-    sha256: ad4552e47aff560e06b474a9442643f6ca33222512f684127bc6a5c5839acc16
+    sha256: aa9273b6fdba0d8cbce9f725bb64235162179f76b2f1ca4b0d9650db0621cb10
   - path: resources/sfdc.pipeline.yml
-    sha256: 9f198d9e1ea27b75e2606da2cdb1d53153ce6e4f50e73c833b0e89f69df07136
+    sha256: e514a38b109539ecc7aa25c2a5ed5b807ddd80f1fa980a0b7dd960bfc43d5c17
 spec_table: ctl.dataflow_spec # rows MERGEd by the factory; tombstoned, never deleted (ADR-010)
 commands:
   verify: make verify
