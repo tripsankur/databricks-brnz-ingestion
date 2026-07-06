@@ -1,6 +1,6 @@
 # generated_by: pipeline_factory
 # spec_id: spec-94139bfa
-# spec_version: 7
+# spec_version: 8
 # DO NOT EDIT — rendered from the approved spec; changes belong in the spec.
 ingestion:
   entity: contract_account
@@ -14,4 +14,4 @@ ingestion:
   table_properties:
     generated_by: pipeline_factory
     spec_id: spec-94139bfa
-    spec_version: "7"
+    spec_version: "8"
