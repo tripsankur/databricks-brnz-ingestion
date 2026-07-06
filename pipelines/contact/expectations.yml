@@ -1,0 +1,18 @@
+# generated_by: pipeline_factory
+# spec_id: spec-7ec8660b
+# spec_version: 1
+# DO NOT EDIT — rendered from the approved spec; changes belong in the spec.
+entity: contact
+expectations:
+  - name: id_not_null
+    constraint: "id IS NOT NULL"
+    action: fail
+  - name: last_name_not_null
+    constraint: "last_name IS NOT NULL"
+    action: fail
+  - name: created_date_not_null
+    constraint: "created_date IS NOT NULL"
+    action: fail
+  - name: email_valid
+    constraint: "email LIKE '%@%.%'"
+    action: warn
