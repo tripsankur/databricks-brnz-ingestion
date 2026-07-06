@@ -1,0 +1,17 @@
+# generated_by: pipeline_factory
+# spec_id: spec-94139bfa
+# spec_version: 7
+# DO NOT EDIT — rendered from the approved spec; changes belong in the spec.
+ingestion:
+  entity: contract_account
+  transport: lakeflow_connect
+  source:
+    system: aldm
+    object: aldm_contract_account
+  mode: snapshot
+  destination:
+    table: workspace.bronze.aldm_contract_account
+  table_properties:
+    generated_by: pipeline_factory
+    spec_id: spec-94139bfa
+    spec_version: "7"
