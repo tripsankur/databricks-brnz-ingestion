@@ -1,6 +1,6 @@
 -- generated_by: pipeline_factory
 -- spec_id: spec-7ec8660b
--- spec_version: 1
+-- spec_version: 2
 -- DO NOT EDIT — rendered from the approved spec; changes belong in the spec.
 -- Silver stitch: workspace.bronze.sfdc_contact -> workspace.silver.contact via crosswalk join.
 
@@ -8,7 +8,7 @@ CREATE OR REPLACE TABLE workspace.silver.contact
 TBLPROPERTIES (
   'generated_by' = 'pipeline_factory',
   'spec_id' = 'spec-7ec8660b',
-  'spec_version' = '1'
+  'spec_version' = '2'
 )
 AS
 SELECT

@@ -1,6 +1,6 @@
 # generated_by: pipeline_factory
 # spec_id: spec-7ec8660b
-# spec_version: 1
+# spec_version: 2
 # DO NOT EDIT — rendered from the approved spec; changes belong in the spec.
 """Rendered smoke tests for the contact pipeline artifacts."""
 
