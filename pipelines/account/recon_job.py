@@ -1,13 +1,13 @@
 # generated_by: pipeline_factory
 # spec_id: spec-86caa689
-# spec_version: 1
+# spec_version: 2
 # DO NOT EDIT — rendered from the approved spec; changes belong in the spec.
 """Reconciliation job for account: count + key + attribute-hash compare."""
 
 from pyspark.sql import SparkSession, functions as F
 
 SPEC_ID = "spec-86caa689"
-SPEC_VERSION = 1
+SPEC_VERSION = 2
 SOURCE_TABLE = "workspace.bronze.sfdc_account"
 TARGET_TABLE = "workspace.silver.account"
 CROSSWALK_TABLE = "workspace.silver.crosswalk_sfdc_account"
@@ -26,19 +26,19 @@ COMPARE_COLUMNS = [
     {
         "source": "Name",
         "target": "name",
-        "normalize": "lower",
+        "normalize": "lowercase",
         "tolerance": None,
     },
     {
         "source": "Type",
         "target": "type",
-        "normalize": "lower",
+        "normalize": "lowercase",
         "tolerance": None,
     },
     {
         "source": "Industry",
         "target": "industry",
-        "normalize": "lower",
+        "normalize": "lowercase",
         "tolerance": None,
     },
     {

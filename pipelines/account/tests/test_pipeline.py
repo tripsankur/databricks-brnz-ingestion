@@ -1,6 +1,6 @@
 # generated_by: pipeline_factory
 # spec_id: spec-86caa689
-# spec_version: 1
+# spec_version: 2
 # DO NOT EDIT — rendered from the approved spec; changes belong in the spec.
 """Rendered smoke tests for the account pipeline artifacts."""
 
