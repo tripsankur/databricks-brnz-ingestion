@@ -1,11 +1,11 @@
 # dataflow.yml — DataflowSpec metadata for account (ADR-008: metadata, never code)
 # Executed by the generic engine in databricks-ingestion-framework; this file
 # mirrors the row MERGEd into ctl.dataflow_spec by Pipeline Factory.
-# generated_by: pipeline_factory · spec_id: spec-86caa689 · spec_version: 9
+# generated_by: pipeline_factory · spec_id: spec-86caa689 · spec_version: 10
 dataflow_id: spec-86caa689
 dataflow_group: sfdc
 entity: account
-spec_version: 9
+spec_version: 10
 source_format: delta
 source_details:
   source_object: "account"
@@ -79,7 +79,7 @@ column_transforms: |
       "name": "AnnualRevenue",
       "target": "annual_revenue",
       "type": "double",
-      "transform": "src.`AnnualRevenue`",
+      "transform": "CASE WHEN src.`AnnualRevenue` < 0 THEN NULL ELSE src.`AnnualRevenue` END",
       "compare": {
         "enabled": true,
         "normalize": null,
@@ -106,7 +106,7 @@ data_quality_expectations: |
       "id_not_null": "id IS NOT NULL",
       "name_not_null": "name IS NOT NULL",
       "created_date_not_null": "created_date IS NOT NULL",
-      "annual_revenue_non_negative": "annual_revenue >= 0"
+      "annual_revenue_non_negative": "annual_revenue IS NOT NULL"
     }
   }
 is_active: true
