@@ -1,0 +1,36 @@
+# databricks.yml — bundle root for factory-generated ingestion metadata.
+# Promotion contract (factory.manifest.yml v2): after merging a factory PR,
+#   databricks bundle deploy -t <target>
+# applies resources/*.pipeline.yml (ingestion pipeline + SDP ETL pipeline +
+# workflow per source). The ETL pipelines reference the ingestion-framework
+# engine deployed from tripsankur/databricks-ingestion-framework.
+bundle:
+  name: brnz-ingestion
+
+include:
+  - resources/*.yml
+
+variables:
+  framework_engine_path:
+    description: Workspace path of the deployed ingestion-framework engine files
+    default: /Workspace/Users/ankurtripathi.cs@gmail.com/.bundle/ingestion-framework/dev/files/engine
+  framework_engine_dir:
+    description: Same path, passed to the engine for sibling imports (pf.engine_dir)
+    default: /Workspace/Users/ankurtripathi.cs@gmail.com/.bundle/ingestion-framework/dev/files/engine
+  spec_table:
+    description: Fully qualified dataflow_spec metadata table
+    default: workspace.ctl.dataflow_spec
+
+targets:
+  dev:
+    default: true
+    mode: development
+    workspace:
+      host: https://dbc-5ff279f3-09b2.cloud.databricks.com
+  prod:
+    mode: production
+    workspace:
+      host: https://dbc-5ff279f3-09b2.cloud.databricks.com
+    variables:
+      framework_engine_path: /Workspace/ingestion-framework/prod/files/engine
+      framework_engine_dir: /Workspace/ingestion-framework/prod/files/engine
