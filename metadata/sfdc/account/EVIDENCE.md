@@ -4,7 +4,7 @@
 - **source**: `workspace.bronze.sfdc_account` (sfdc)
 - **target**: `workspace.silver.account` (lakehouse)
 - **approved by**: ankurtripathi.cs@gmail.com
-- **build run**: e8ff47af-a778-47de-8e02-155b5650c82b
+- **build run**: 72a2e8e0-4dc8-46fd-a665-c0f424693e0c
 
 ## Mapping summary
 
@@ -39,7 +39,7 @@ _no fixes required_
 ## Artifacts
 
 - `metadata/sfdc/account/dataflow.yml` (`c4d315f90828`)
-- `resources/sfdc.pipeline.yml` (`b0518613bace`)
+- `resources/sfdc.pipeline.yml` (`0880e0ba7d70`)
 
 ---
 _generated_by: pipeline_factory · spec_id: spec-86caa689 · spec_version: 14_
