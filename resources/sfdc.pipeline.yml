@@ -12,7 +12,7 @@ resources:
       continuous: false
       libraries:
         - glob:
-            include: /Workspace/Users/ankurtripathi.cs@gmail.com/.bundle/ingestion-framework/dev/files/engine/**
+            include: ${var.framework_engine_path}/engine/**
       configuration:
         pf.source: sfdc
         pf.spec_table: ${var.spec_table}
@@ -24,12 +24,10 @@ resources:
       name: sfdc_workflow
       tags:
         generated_by: pipeline_factory
-      trigger:
+      schedule:
+        quartz_cron_expression: "0 0 3 * * ?"
+        timezone_id: America/New_York
         pause_status: UNPAUSED
-        periodic:
-          interval: 1
-          unit: DAYS
-      # contract batch_schedule (quartz): 0 0 3 * * ?
       tasks:
         - task_key: etl
           pipeline_task:
