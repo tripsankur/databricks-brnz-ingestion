@@ -9,7 +9,7 @@ artifacts:
   - path: metadata/sfdc/account/dataflow.yml
     sha256: 64448c759026643a76846a80551b315b0fee201f319622645199fe9d1ff5e94d
   - path: resources/sfdc.pipeline.yml
-    sha256: 1620bd28560e72fe4be8ba2ab993a5da22ef7cb5ff52e484f63689a1ec65f9e0
+    sha256: 5b02889a32c5776bb9336843fe04004a7710018a48fa9893b925ca771a02252c
 spec_table: ctl.dataflow_spec # rows MERGEd by the factory; tombstoned, never deleted (ADR-010)
 commands:
   verify: make verify
