@@ -29,6 +29,8 @@ resources:
                   - Industry
                   - AnnualRevenue
                   - CreatedDate
+                  - SystemModstamp
+                  - IsDeleted
       serverless: true
       channel: PREVIEW
     slvr_sfdc_etl:
