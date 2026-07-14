@@ -1,0 +1,120 @@
+# resources/sfdc.pipeline.yml — standard Lakeflow assets for source "sfdc"
+# (ADR-009: ingestion pipeline = what lands bronze; ETL pipeline = bronze->silver;
+#  workflow = when). Prod promotion: databricks bundle deploy applies this file.
+# generated_by: pipeline_factory · spec_id: spec-2443d331 · spec_version: 2
+resources:
+  pipelines:
+    brnz_sfdc_ingest:
+      name: brnz_sfdc_ingest
+      ingestion_definition:
+        connection_name: sfdc_sample
+        objects:
+          - table:
+              source_schema: objects
+              source_table: account
+              destination_catalog: workspace
+              destination_schema: bronze
+              destination_table: sfdc_account
+              table_configuration:
+                scd_type: SCD_TYPE_1
+                primary_keys:
+                  - Id
+                include_columns:
+                  - Id
+                  - Name
+                  - Type
+                  - Industry
+                  - AnnualRevenue
+                  - CreatedDate
+      serverless: true
+      channel: PREVIEW
+    slvr_sfdc_etl:
+      name: slvr_sfdc_etl
+      catalog: workspace
+      schema: silver
+      serverless: true
+      continuous: false
+      libraries:
+        - glob:
+            include: ${var.framework_engine_path}/engine/**
+      configuration:
+        pf.source: sfdc
+        pf.spec_table: ${var.spec_table}
+        pf.env: ${bundle.target}
+        pf.engine_dir: ${var.framework_engine_dir}
+
+  jobs:
+    sfdc_workflow:
+      name: sfdc_workflow
+      tags:
+        generated_by: pipeline_factory
+      # Live schedule/pause/retries/notifications are CONFIG-TABLE-DRIVEN
+      # (ctl.batch_config / ctl.job_config, ADR-011) — this block seeds defaults
+      # for promotion; operators edit config, not this file.
+      schedule:
+        quartz_cron_expression: "0 0 3 * * ?"
+        timezone_id: America/New_York
+        pause_status: UNPAUSED
+      parameters:
+        - name: trigger_type
+          default: schedule
+      environments:
+        - environment_key: default
+          spec:
+            client: "2"
+      tasks:
+        - task_key: drift_check
+          spark_python_task:
+            python_file: ${var.framework_engine_dir}/drift_check.py
+            parameters:
+              - "--source"
+              - sfdc
+              - "--spec-table"
+              - ${var.spec_table}
+              - "--run-id"
+              - "{{job.run_id}}"
+          environment_key: default
+        - task_key: ingest
+          depends_on:
+            - task_key: drift_check
+          pipeline_task:
+            pipeline_id: ${resources.pipelines.brnz_sfdc_ingest.id}
+            full_refresh: false
+        - task_key: etl
+          depends_on:
+            - task_key: ingest
+          pipeline_task:
+            pipeline_id: ${resources.pipelines.slvr_sfdc_etl.id}
+            full_refresh: false
+        # observability plane (ADR-011): every run logs itself + reconciles
+        - task_key: log_run
+          depends_on:
+            - task_key: etl
+          spark_python_task:
+            python_file: ${var.framework_engine_dir}/run_logger.py
+            parameters:
+              - "--source"
+              - sfdc
+              - "--spec-table"
+              - ${var.spec_table}
+              - "--run-id"
+              - "{{job.run_id}}"
+              - "--trigger-type"
+              - "{{job.parameters.trigger_type}}"
+          environment_key: default
+        - task_key: recon
+          depends_on:
+            - task_key: log_run
+          spark_python_task:
+            python_file: ${var.framework_engine_dir}/recon_job.py
+            parameters:
+              - "--source"
+              - sfdc
+              - "--spec-table"
+              - ${var.spec_table}
+              - "--run-id"
+              - "{{job.run_id}}"
+          environment_key: default
+        # synced-table refresh (dashboard freshness) is workspace-specific:
+        # the app appends sequential pipeline_tasks for the pf_lakebase sync
+        # pipelines at provision time (ids resolved live, not portable here).
