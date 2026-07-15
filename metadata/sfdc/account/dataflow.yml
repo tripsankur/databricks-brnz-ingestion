@@ -1,11 +1,11 @@
 # dataflow.yml — DataflowSpec metadata for account (ADR-008: metadata, never code)
 # Executed by the generic engine in databricks-ingestion-framework; this file
 # mirrors the row MERGEd into ctl.dataflow_spec by Pipeline Factory.
-# generated_by: pipeline_factory · spec_id: spec-ae820f4e · spec_version: 2
+# generated_by: pipeline_factory · spec_id: spec-ae820f4e · spec_version: 3
 dataflow_id: spec-ae820f4e
 dataflow_group: sfdc
 entity: account
-spec_version: 2
+spec_version: 3
 source_format: lakeflow_connect
 source_details:
   source_object: "account"
