@@ -4,7 +4,7 @@
 - **source**: `workspace.bronze.sfdc_account` (sfdc)
 - **target**: `workspace.silver.account` (lakehouse)
 - **approved by**: ankurtripathi.cs@gmail.com
-- **build run**: 0983c54b-bcb7-470e-a38d-d2b4d964a695
+- **build run**: be442b02-0641-4ab4-a43d-8f3319493670
 
 ## Mapping summary
 
