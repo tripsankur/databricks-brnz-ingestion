@@ -1,11 +1,11 @@
 # dataflow.yml — DataflowSpec metadata for account (ADR-008: metadata, never code)
 # Executed by the generic engine in databricks-ingestion-framework; this file
 # mirrors the row MERGEd into ctl.dataflow_spec by Pipeline Factory.
-# generated_by: pipeline_factory · spec_id: spec-ae820f4e · spec_version: 3
+# generated_by: pipeline_factory · spec_id: spec-ae820f4e · spec_version: 4
 dataflow_id: spec-ae820f4e
 dataflow_group: sfdc
 entity: account
-spec_version: 3
+spec_version: 4
 source_format: lakeflow_connect
 source_details:
   source_object: "account"
@@ -79,7 +79,7 @@ column_transforms: |
       "name": "AnnualRevenue",
       "target": "annual_revenue",
       "type": "currency",
-      "transform": "CAST(src.AnnualRevenue AS DOUBLE)",
+      "transform": "CASE CASE WHEN src.AnnualRevenue < 0 THEN null ELSE CAST(src.AnnualRevenue AS DOUBLE) END WHEN '-1' THEN 'null' WHEN '-2' THEN 'null' WHEN '-3' THEN 'null' WHEN '-4' THEN 'null' WHEN '-5' THEN 'null' ELSE CASE WHEN src.AnnualRevenue < 0 THEN null ELSE CAST(src.AnnualRevenue AS DOUBLE) END END",
       "compare": {
         "enabled": true,
         "normalize": null,
