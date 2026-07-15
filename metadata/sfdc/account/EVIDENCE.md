@@ -1,10 +1,10 @@
 # Pipeline Factory evidence — account
 
-- **spec**: `spec-2443d331` v2
+- **spec**: `spec-9b97d38f` v2
 - **source**: `workspace.bronze.sfdc_account` (sfdc)
 - **target**: `workspace.silver.account` (lakehouse)
 - **approved by**: ankurtripathi.cs@gmail.com
-- **build run**: be442b02-0641-4ab4-a43d-8f3319493670
+- **build run**: c3c48f21-e8fb-437c-b41d-865c0b799bb2
 
 ## Mapping summary
 
@@ -14,7 +14,7 @@
 | `Name` | `name` | `src.`Name`` | 100% |
 | `Type` | `type` | `src.`Type`` | 70% |
 | `Industry` | `industry` | `src.`Industry`` | 70% |
-| `AnnualRevenue` | `annual_revenue` | `CAST(src.`AnnualRevenue` AS DOUBLE)` | 90% |
+| `AnnualRevenue` | `annual_revenue` | `CAST(src.`AnnualRevenue` AS DOUBLE)` | 80% |
 | `CreatedDate` | `created_date` | `src.`CreatedDate`` | 100% |
 
 **2 mapping(s) below 80% confidence** were human-reviewed at approval.
@@ -38,8 +38,8 @@ _no fixes required_
 
 ## Artifacts
 
-- `metadata/sfdc/account/dataflow.yml` (`64448c759026`)
-- `resources/sfdc.pipeline.yml` (`4b297c9634db`)
+- `metadata/sfdc/account/dataflow.yml` (`1d7ac12658bd`)
+- `resources/sfdc.pipeline.yml` (`6c2041f66e34`)
 
 ---
-_generated_by: pipeline_factory · spec_id: spec-2443d331 · spec_version: 2_
+_generated_by: pipeline_factory · spec_id: spec-9b97d38f · spec_version: 2_
