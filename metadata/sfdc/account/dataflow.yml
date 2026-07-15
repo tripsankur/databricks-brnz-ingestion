@@ -1,8 +1,8 @@
 # dataflow.yml — DataflowSpec metadata for account (ADR-008: metadata, never code)
 # Executed by the generic engine in databricks-ingestion-framework; this file
 # mirrors the row MERGEd into ctl.dataflow_spec by Pipeline Factory.
-# generated_by: pipeline_factory · spec_id: spec-9b97d38f · spec_version: 2
-dataflow_id: spec-9b97d38f
+# generated_by: pipeline_factory · spec_id: spec-ae820f4e · spec_version: 2
+dataflow_id: spec-ae820f4e
 dataflow_group: sfdc
 entity: account
 spec_version: 2
@@ -56,7 +56,7 @@ column_transforms: |
     {
       "name": "Type",
       "target": "type",
-      "type": "string",
+      "type": "picklist",
       "transform": "src.`Type`",
       "compare": {
         "enabled": true,
@@ -67,7 +67,7 @@ column_transforms: |
     {
       "name": "Industry",
       "target": "industry",
-      "type": "string",
+      "type": "picklist",
       "transform": "src.`Industry`",
       "compare": {
         "enabled": true,
@@ -78,8 +78,8 @@ column_transforms: |
     {
       "name": "AnnualRevenue",
       "target": "annual_revenue",
-      "type": "decimal",
-      "transform": "CAST(src.`AnnualRevenue` AS DOUBLE)",
+      "type": "currency",
+      "transform": "CAST(src.AnnualRevenue AS DOUBLE)",
       "compare": {
         "enabled": true,
         "normalize": null,
@@ -89,7 +89,7 @@ column_transforms: |
     {
       "name": "CreatedDate",
       "target": "created_date",
-      "type": "timestamp",
+      "type": "datetime",
       "transform": "src.`CreatedDate`",
       "compare": {
         "enabled": true,
@@ -101,7 +101,7 @@ column_transforms: |
 data_quality_expectations: |
   {
     "expect": {
-      "annual_revenue_non_negative": "annual_revenue IS NULL OR annual_revenue >= 0"
+      "annual_revenue_non_negative": "annual_revenue >= 0"
     },
     "expect_or_drop": {},
     "expect_or_fail": {
